@@ -1,9 +1,16 @@
 #include "MenuManager.h"
 
+MenuManager::MenuManager()
+{
+    users = fileWithUsers.loadUsersFromFile();
+}
+
+
 void MenuManager::userRegistration()
 {
     User user = enterNewUserData();
     users.push_back(user);
+    fileWithUsers.addUserToFile(user);
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
 }

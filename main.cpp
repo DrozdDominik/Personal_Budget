@@ -7,6 +7,7 @@ int main()
 {
     PersonalBudget personalBudget;
 
+    personalBudget.writeAllUsers();
     personalBudget.userRegistration();
     personalBudget.writeAllUsers();
     personalBudget.userRegistration();

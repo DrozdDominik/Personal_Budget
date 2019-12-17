@@ -2,3 +2,4 @@ bin/
 obj
 plan/
 personal_budget.*
+*.xml
