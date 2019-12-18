@@ -8,3 +8,11 @@ string AuxiliaryMethods::firstCapitalRestLowercase(string text) {
     }
     return text;
 }
+
+
+string AuxiliaryMethods::loadLine()
+{
+    string enter = "";
+    getline(cin, enter);
+    return enter;
+}

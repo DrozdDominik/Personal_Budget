@@ -3,6 +3,12 @@
 MenuManager::MenuManager()
 {
     users = fileWithUsers.loadUsersFromFile();
+    idOfLoggedInUser = 0;
+}
+
+int MenuManager::getIdOfLoggedInUser()
+{
+    return idOfLoggedInUser;
 }
 
 
@@ -72,3 +78,40 @@ void MenuManager::writeAllUsers()
 }
 }
 
+int MenuManager::userLogin() {
+    string login = "", password = "";
+    system("cls");
+    cout << "        >>> LOGOWANIE <<<" << endl;
+    cout << "---------------------------------" << endl;
+    cout << "Podaj login: ";
+    login = AuxiliaryMethods::loadLine();
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].getLogin() == login) {
+            for (int numberOfAttempts = 3; numberOfAttempts > 0; numberOfAttempts--) {
+                cout << "Podaj haslo. Pozostalo prob: " << numberOfAttempts << ": ";
+                password = AuxiliaryMethods::loadLine();
+
+                if (users[i].getPassword() == password) {
+                    cout << endl << "Zalogowales sie poprawnie." << endl << endl;
+                    system("pause");
+                    idOfLoggedInUser = users[i].getId();
+                    return idOfLoggedInUser;
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            system("pause");
+            return 0;
+        }
+    }
+    cout << "Uzytkownik o podanym loginie nie istnieje" << endl << endl;
+    system("pause");
+    return 0;
+}
+
+bool MenuManager::whetherUserIsLoggedIn()
+{
+    if(idOfLoggedInUser > 0)
+        return true;
+    else
+        return false;
+}

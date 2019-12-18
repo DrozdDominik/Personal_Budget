@@ -15,6 +15,7 @@ MenuManager menuManager;
 
 public:
     void userRegistration();
+    void userLogin();
     void writeAllUsers();
 };
 

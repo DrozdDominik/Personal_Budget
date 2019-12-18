@@ -14,6 +14,7 @@ class MenuManager
 {
     vector <User> users;
     FileWithUsers fileWithUsers;
+    int idOfLoggedInUser;
 
     User enterNewUserData();
     int getNewUserId();
@@ -21,7 +22,10 @@ class MenuManager
 
 public:
     MenuManager();
+    int getIdOfLoggedInUser();
     void userRegistration();
+    int userLogin();
+    bool whetherUserIsLoggedIn();
     void writeAllUsers();
 };
 

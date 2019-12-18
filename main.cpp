@@ -7,11 +7,12 @@ int main()
 {
     PersonalBudget personalBudget;
 
-    personalBudget.writeAllUsers();
-    personalBudget.userRegistration();
-    personalBudget.writeAllUsers();
-    personalBudget.userRegistration();
-    personalBudget.writeAllUsers();
+      personalBudget.userLogin();
+    //personalBudget.writeAllUsers();
+   // personalBudget.userRegistration();
+   // personalBudget.writeAllUsers();
+  //  personalBudget.userRegistration();
+   // personalBudget.writeAllUsers();
 
     return 0;
 }
