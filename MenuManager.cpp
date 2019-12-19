@@ -115,3 +115,27 @@ bool MenuManager::whetherUserIsLoggedIn()
     else
         return false;
 }
+
+
+void MenuManager::changingPasswordOfLoggedUser() {
+    system("cls");
+    string newPassword = "";
+    cout << "Podaj nowe haslo: ";
+    newPassword = AuxiliaryMethods::loadLine();
+
+    for (int i=0; i < users.size(); i++)
+    {
+        if (users[i].getId() == idOfLoggedInUser)
+        {
+            users[i].setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl;
+            system("pause");
+        }
+    }
+    fileWithUsers.changePasswordInFile(idOfLoggedInUser, newPassword);
+}
+
+
+void MenuManager::userLogOut() {
+    idOfLoggedInUser = 0;
+}

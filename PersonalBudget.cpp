@@ -59,10 +59,10 @@ void PersonalBudget::userMenu() {
     //    showSelectedPeriodBalance();
         break;
     case '6':
-    //    changingPasswordOfLoggedUser();
+        changingPasswordOfLoggedUser();
         break;
     case '7':
-    //    userLogOut();
+        userLogOut();
         break;
     default:
         cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
@@ -81,8 +81,19 @@ void PersonalBudget::userLogin()
     menuManager.userLogin();
 }
 
-bool PersonalBudget::whetherUserIsLoggedIn() {
+bool PersonalBudget::whetherUserIsLoggedIn()
+{
     return menuManager.whetherUserIsLoggedIn();
+}
+
+void PersonalBudget::changingPasswordOfLoggedUser()
+{
+    menuManager.changingPasswordOfLoggedUser();
+}
+
+void PersonalBudget::userLogOut()
+{
+    menuManager.userLogOut();
 }
 
 void PersonalBudget::writeAllUsers()
@@ -90,3 +101,5 @@ void PersonalBudget::writeAllUsers()
     menuManager.writeAllUsers();
     system("pause");
 }
+
+
