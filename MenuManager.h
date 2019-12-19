@@ -26,6 +26,9 @@ public:
     void userRegistration();
     int userLogin();
     bool whetherUserIsLoggedIn();
+    void changingPasswordOfLoggedUser();
+    void userLogOut();
+
     void writeAllUsers();
 };
 

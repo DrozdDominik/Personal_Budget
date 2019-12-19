@@ -20,6 +20,8 @@ public:
     bool whetherUserIsLoggedIn();
     void userMenu();
     void writeAllUsers();
+    void changingPasswordOfLoggedUser();
+    void userLogOut();
 };
 
 #endif

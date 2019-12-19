@@ -48,3 +48,19 @@ vector <User> FileWithUsers::loadUsersFromFile() {
     }
     return users;
 }
+
+void FileWithUsers::changePasswordInFile (int idOfLoggedInUser, string password) {
+    CMarkup xml;
+    xml.Load("Users.xml");
+    xml.FindElem("USERS");
+    xml.IntoElem();
+    while ( xml.FindElem("USER") ) {
+        xml.FindChildElem("ID");
+        if ( atoi( MCD_2PCSZ(xml.GetChildData())) == idOfLoggedInUser) {
+            xml.FindChildElem("PASSWORD");
+            xml.SetChildData(password);
+            break;
+        }
+    }
+    xml.Save("Users.xml");
+}
