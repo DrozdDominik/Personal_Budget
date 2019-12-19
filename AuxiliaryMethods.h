@@ -11,6 +11,7 @@ public:
 
     static string firstCapitalRestLowercase(string text);
     static string loadLine();
+    static char loadSign();
 };
 
 
