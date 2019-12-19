@@ -14,8 +14,10 @@ class PersonalBudget {
 MenuManager menuManager;
 
 public:
+    void registrationMenu();
     void userRegistration();
     void userLogin();
+    bool whetherUserIsLoggedIn();
     void writeAllUsers();
 };
 

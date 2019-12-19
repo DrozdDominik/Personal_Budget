@@ -7,12 +7,16 @@ int main()
 {
     PersonalBudget personalBudget;
 
-      personalBudget.userLogin();
-    //personalBudget.writeAllUsers();
-   // personalBudget.userRegistration();
-   // personalBudget.writeAllUsers();
-  //  personalBudget.userRegistration();
-   // personalBudget.writeAllUsers();
+    while(true) {
+    if(!personalBudget.whetherUserIsLoggedIn()) {
+      personalBudget.registrationMenu();
+    }
+    else {
+        cout << "Panel Uzytkownika" << endl;
+        system("pause");
+        exit(0);
+    }
+}
 
     return 0;
 }
