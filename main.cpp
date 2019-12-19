@@ -12,9 +12,7 @@ int main()
       personalBudget.registrationMenu();
     }
     else {
-        cout << "Panel Uzytkownika" << endl;
-        system("pause");
-        exit(0);
+        personalBudget.userMenu();
     }
 }
 
