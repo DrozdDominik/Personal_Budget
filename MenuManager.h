@@ -14,21 +14,23 @@ class MenuManager
 {
     vector <User> users;
     FileWithUsers fileWithUsers;
-    int idOfLoggedInUser;
-
+    User loggedUser;
     User enterNewUserData();
     int getNewUserId();
     bool isLoginExist(string login);
 
 public:
-    MenuManager();
-    int getIdOfLoggedInUser();
+    MenuManager(string usersFileName) : fileWithUsers(usersFileName){
+        users = fileWithUsers.loadUsersFromFile();
+
+    };
+
     void userRegistration();
-    int userLogin();
+    void userLogin();
     bool whetherUserIsLoggedIn();
     void changingPasswordOfLoggedUser();
-    void userLogOut();
-
+    User getLoggedUser();
+    void clearLoggedUser();
     void writeAllUsers();
 };
 

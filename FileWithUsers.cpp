@@ -49,16 +49,16 @@ vector <User> FileWithUsers::loadUsersFromFile() {
     return users;
 }
 
-void FileWithUsers::changePasswordInFile (int idOfLoggedInUser, string password) {
+void FileWithUsers::changePasswordInFile (User loggedUser) {
     CMarkup xml;
     xml.Load("Users.xml");
     xml.FindElem("USERS");
     xml.IntoElem();
     while ( xml.FindElem("USER") ) {
         xml.FindChildElem("ID");
-        if ( atoi( MCD_2PCSZ(xml.GetChildData())) == idOfLoggedInUser) {
+        if ( atoi( MCD_2PCSZ(xml.GetChildData())) == loggedUser.getId()) {
             xml.FindChildElem("PASSWORD");
-            xml.SetChildData(password);
+            xml.SetChildData(loggedUser.getPassword());
             break;
         }
     }

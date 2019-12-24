@@ -13,6 +13,9 @@ void Transaction::setUserId(int newUserId)
 void Transaction::setDate(int newDate)
 {
     date = newDate;
+    stringDate = AuxiliaryMethods::intToString(date);
+    stringDate.insert(6,"-");
+    stringDate.insert(4,"-");
 }
 
 void Transaction::setItem(string newItem)
@@ -23,6 +26,7 @@ void Transaction::setItem(string newItem)
 void Transaction::setAmount(double newAmount)
 {
     amount = newAmount;
+    stringAmount = AuxiliaryMethods::doubleToString(amount);
 }
 
 int Transaction::getId()
@@ -48,4 +52,14 @@ string Transaction::getItem()
 double Transaction::getAmount()
 {
     return amount;
+}
+
+string Transaction::getStringDate()
+{
+    return stringDate;
+}
+
+string Transaction::getStringAmount()
+{
+    return stringAmount;
 }

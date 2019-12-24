@@ -9,12 +9,13 @@
 using namespace std;
 
 class FileWithUsers {
+const string USERS_FILENAME;
 
 public:
-
+    FileWithUsers(string usersFileName): USERS_FILENAME(usersFileName) {};
     void addUserToFile(User user);
     vector <User> loadUsersFromFile();
-    void changePasswordInFile(int idOfLoggedInUser, string password);
+    void changePasswordInFile(User loggedUser);
 };
 
 #endif

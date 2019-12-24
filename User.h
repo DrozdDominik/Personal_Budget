@@ -13,7 +13,7 @@ string name;
 string surname;
 
 public:
-
+    User();
     void setId(int newId);
     void setLogin(string newLogin);
     void setPassword(string newPassword);
@@ -25,7 +25,7 @@ public:
     string getPassword();
     string getName();
     string getSurname();
-
+    void clearUser();
 };
 
 #endif

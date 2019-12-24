@@ -32,3 +32,26 @@ char AuxiliaryMethods::loadSign() {
     }
     return sign;
 }
+
+int AuxiliaryMethods::tmToInt(tm* &tmDate) {
+    int intDate;
+    intDate = (tmDate->tm_year + 1900) * pow(10,4) + (tmDate->tm_mon + 1) * pow (10,2) + tmDate->tm_mday;
+    return intDate;
+}
+
+string AuxiliaryMethods::intToString(int number)
+ {
+    ostringstream ss;
+    ss << number;
+    string word = ss.str();
+    return word;
+}
+
+string AuxiliaryMethods::doubleToString(double number)
+{
+    stringstream ss;
+    string str;
+    ss << number;
+    ss >> str;
+    return  str;
+}
