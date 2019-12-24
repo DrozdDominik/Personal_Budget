@@ -1,5 +1,11 @@
 #include "User.h"
 
+User::User()
+{
+    clearUser();
+}
+
+
 void User::setId(int newId)
 {
     id = newId;
@@ -48,4 +54,13 @@ string User::getName()
 string User::getSurname()
 {
     return surname;
+}
+
+void User::clearUser()
+{
+    id = 0;
+    login = "";
+    password = "";
+    name = "";
+    surname = "";
 }

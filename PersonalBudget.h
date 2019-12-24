@@ -6,14 +6,25 @@
 
 #include "MenuManager.h"
 #include "User.h"
+#include "UserManager.h"
 
 using namespace std;
 
 class PersonalBudget {
 
 MenuManager menuManager;
+UserManager *userManager;
+const string INCOMES_FILENAME;
 
 public:
+    PersonalBudget (string usersFileName, string incomesFileName)
+        : menuManager(usersFileName), INCOMES_FILENAME(incomesFileName) {
+        userManager = NULL;
+    };
+    ~PersonalBudget() {
+        delete userManager;
+        userManager = NULL;
+    }
     void registrationMenu();
     void userRegistration();
     void userLogin();
@@ -22,6 +33,7 @@ public:
     void writeAllUsers();
     void changingPasswordOfLoggedUser();
     void userLogOut();
+    void addIncome();
 };
 
 #endif

@@ -5,10 +5,11 @@ using namespace std;
 
 int main()
 {
-    PersonalBudget personalBudget;
+    PersonalBudget personalBudget("users.xml","incomes.xml");
 
     while(true) {
-    if(!personalBudget.whetherUserIsLoggedIn()) {
+    if(!personalBudget.whetherUserIsLoggedIn())
+    {
       personalBudget.registrationMenu();
     }
     else {

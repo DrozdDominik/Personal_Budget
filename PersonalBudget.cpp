@@ -1,6 +1,5 @@
 #include "PersonalBudget.h"
 
-
 void PersonalBudget::registrationMenu() {
     system("cls");
     cin.sync();
@@ -31,6 +30,7 @@ void PersonalBudget::registrationMenu() {
 void PersonalBudget::userMenu() {
     system("cls");
     cout << "    >>> MENU UZYTKOWNIKA <<<     " << endl;
+    cout << "Wlasciciel: " << userManager->getUserFullName() << endl;
     cout << "---------------------------------" << endl;
     cout << "1. Dodaj przychod" << endl;
     cout << "2. Dodaj wydatek" << endl;
@@ -44,7 +44,7 @@ void PersonalBudget::userMenu() {
     cout << "Twoj wybor: ";
     switch (AuxiliaryMethods::loadSign()) {
     case '1':
-     //   addIncome();
+        addIncome();
         break;
     case '2':
      //   addExpense();
@@ -79,6 +79,10 @@ void PersonalBudget::userRegistration()
 void PersonalBudget::userLogin()
 {
     menuManager.userLogin();
+    if (menuManager.whetherUserIsLoggedIn())
+    {
+        userManager = new UserManager(INCOMES_FILENAME, menuManager.getLoggedUser());
+    }
 }
 
 bool PersonalBudget::whetherUserIsLoggedIn()
@@ -93,7 +97,7 @@ void PersonalBudget::changingPasswordOfLoggedUser()
 
 void PersonalBudget::userLogOut()
 {
-    menuManager.userLogOut();
+    menuManager.clearLoggedUser();
 }
 
 void PersonalBudget::writeAllUsers()
@@ -102,4 +106,7 @@ void PersonalBudget::writeAllUsers()
     system("pause");
 }
 
-
+void PersonalBudget::addIncome()
+{
+    userManager -> addIncome();
+}

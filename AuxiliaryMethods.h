@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <algorithm>
+#include <math.h>
+#include <ctime>
+#include <sstream>
+
 
 using namespace std;
 
@@ -12,6 +16,9 @@ public:
     static string firstCapitalRestLowercase(string text);
     static string loadLine();
     static char loadSign();
+    static int tmToInt(tm* &tmDate);
+    static string intToString(int number);
+    static string doubleToString(double number);
 };
 
 

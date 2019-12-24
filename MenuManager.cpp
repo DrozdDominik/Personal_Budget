@@ -1,16 +1,5 @@
 #include "MenuManager.h"
 
-MenuManager::MenuManager()
-{
-    users = fileWithUsers.loadUsersFromFile();
-    idOfLoggedInUser = 0;
-}
-
-int MenuManager::getIdOfLoggedInUser()
-{
-    return idOfLoggedInUser;
-}
-
 
 void MenuManager::userRegistration()
 {
@@ -78,7 +67,7 @@ void MenuManager::writeAllUsers()
 }
 }
 
-int MenuManager::userLogin() {
+void MenuManager::userLogin() {
     string login = "", password = "";
     system("cls");
     cout << "        >>> LOGOWANIE <<<" << endl;
@@ -92,31 +81,31 @@ int MenuManager::userLogin() {
                 password = AuxiliaryMethods::loadLine();
 
                 if (users[i].getPassword() == password) {
-                    cout << endl << "Zalogowales sie poprawnie." << endl << endl;
+                    cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    idOfLoggedInUser = users[i].getId();
-                    return idOfLoggedInUser;
+                    loggedUser = users[i];
+                    return;
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
             system("pause");
-            return 0;
+            return;
         }
     }
     cout << "Uzytkownik o podanym loginie nie istnieje" << endl << endl;
     system("pause");
-    return 0;
 }
 
-bool MenuManager::whetherUserIsLoggedIn()
-{
-    if(idOfLoggedInUser > 0)
+bool MenuManager::whetherUserIsLoggedIn() {
+
+if (loggedUser.getId() > 0)
         return true;
     else
         return false;
 }
-
-
+void MenuManager::clearLoggedUser() {
+    loggedUser.clearUser();
+}
 void MenuManager::changingPasswordOfLoggedUser() {
     system("cls");
     string newPassword = "";
@@ -125,17 +114,17 @@ void MenuManager::changingPasswordOfLoggedUser() {
 
     for (int i=0; i < users.size(); i++)
     {
-        if (users[i].getId() == idOfLoggedInUser)
+        if (users[i].getId() == loggedUser.getId())
         {
             users[i].setPassword(newPassword);
-            cout << "Haslo zostalo zmienione." << endl;
+            loggedUser.setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl << endl;
             system("pause");
         }
     }
-    fileWithUsers.changePasswordInFile(idOfLoggedInUser, newPassword);
+   fileWithUsers.changePasswordInFile(loggedUser);
 }
 
-
-void MenuManager::userLogOut() {
-    idOfLoggedInUser = 0;
+User MenuManager::getLoggedUser() {
+    return loggedUser;
 }
