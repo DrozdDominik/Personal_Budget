@@ -250,3 +250,8 @@ string UserManager::getUserFullName()
     fullname = copyOfLoggedUser.getName() + " " + copyOfLoggedUser.getSurname();
     return fullname;
 }
+
+void UserManager::addExpense()
+{
+    addTransaction(expenses, EXPENSE_FILENAME, "WYDATEK");
+}

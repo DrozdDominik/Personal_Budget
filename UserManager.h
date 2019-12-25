@@ -7,7 +7,6 @@
 #include "Transaction.h"
 #include "FileWithTransactions.h"
 #include "AuxiliaryMethods.h"
-//#include "MenuManager.h"
 #include "User.h"
 
 using namespace std;
@@ -15,7 +14,9 @@ using namespace std;
 class UserManager
 {
     vector <Transaction> incomes;
+    vector <Transaction> expenses;
     const string INCOMES_FILENAME;
+    const string EXPENSE_FILENAME;
     FileWithTransactions fileWithTransactions;
     User copyOfLoggedUser;
 
@@ -31,9 +32,10 @@ class UserManager
     void addTransaction(vector<Transaction> &transactions, string fileName, string keyword);
 
 public:
-    UserManager(string newIncomeFileName, User newLoggedUser) : INCOMES_FILENAME(newIncomeFileName), copyOfLoggedUser(newLoggedUser) /*menuManager(usersFileName)*/{};
+    UserManager(string newIncomesFileName, string newExpensesFileName, User newLoggedUser) : INCOMES_FILENAME(newIncomesFileName), EXPENSE_FILENAME(newExpensesFileName), copyOfLoggedUser(newLoggedUser) /*menuManager(usersFileName)*/{};
     string getUserFullName();
     void addIncome();
+    void addExpense();
 };
 
 
