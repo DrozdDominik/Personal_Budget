@@ -47,7 +47,7 @@ void PersonalBudget::userMenu() {
         addIncome();
         break;
     case '2':
-     //   addExpense();
+        addExpense();
         break;
     case '3':
      //   showCurrentMonthBalance();
@@ -81,7 +81,7 @@ void PersonalBudget::userLogin()
     menuManager.userLogin();
     if (menuManager.whetherUserIsLoggedIn())
     {
-        userManager = new UserManager(INCOMES_FILENAME, menuManager.getLoggedUser());
+        userManager = new UserManager(INCOMES_FILENAME, EXPENSE_FILENAME, menuManager.getLoggedUser());
     }
 }
 
@@ -109,4 +109,9 @@ void PersonalBudget::writeAllUsers()
 void PersonalBudget::addIncome()
 {
     userManager -> addIncome();
+}
+
+void PersonalBudget::addExpense()
+{
+    userManager -> addExpense();
 }

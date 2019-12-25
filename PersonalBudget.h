@@ -15,10 +15,11 @@ class PersonalBudget {
 MenuManager menuManager;
 UserManager *userManager;
 const string INCOMES_FILENAME;
+const string EXPENSE_FILENAME;
 
 public:
-    PersonalBudget (string usersFileName, string incomesFileName)
-        : menuManager(usersFileName), INCOMES_FILENAME(incomesFileName) {
+    PersonalBudget (string usersFileName, string incomesFileName, string expensesFileName)
+        : menuManager(usersFileName), INCOMES_FILENAME(incomesFileName), EXPENSE_FILENAME(expensesFileName) {
         userManager = NULL;
     };
     ~PersonalBudget() {
@@ -34,6 +35,7 @@ public:
     void changingPasswordOfLoggedUser();
     void userLogOut();
     void addIncome();
+    void addExpense();
 };
 
 #endif
