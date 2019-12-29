@@ -2,7 +2,14 @@
 
 void FileWithTransactions::addTransactionToFile (Transaction transaction, string fileName) {
     CMarkup xml;
-    xml.Load(fileName);
+    bool fileExists = xml.Load(fileName);
+    if(!fileExists)
+    {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xml.AddElem("TRANSACTIONS");
+    }
+    xml.FindElem();
+    xml.IntoElem();
     xml.AddElem("TRANSACTION");
     xml.IntoElem();
     {
@@ -14,4 +21,33 @@ void FileWithTransactions::addTransactionToFile (Transaction transaction, string
     }
     xml.OutOfElem();
     xml.Save(fileName);
+}
+
+vector <Transaction> FileWithTransactions::loadTransactionsFromFile(string fileName, int idOfLoggedUser) {
+    vector <Transaction> transactions;
+    CMarkup xml;
+    xml.Load(fileName);
+    xml.FindElem("TRANSACTIONS");
+    xml.IntoElem();
+    while (xml.FindElem("TRANSACTION")) {
+        Transaction transaction;
+        xml.IntoElem();
+        xml.FindElem("USERID");
+        int userId = atoi(MCD_2PCSZ(xml.GetData()));
+        if (userId == idOfLoggedUser) {
+            transaction.setUserId(userId);
+            xml.ResetMainPos();
+            xml.FindElem("ID");
+            transaction.setId(atoi(MCD_2PCSZ(xml.GetData())));
+            xml.FindElem("DATE");
+            transaction.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+            xml.FindElem("ITEM");
+            transaction.setItem(xml.GetData());
+            xml.FindElem("AMOUNT");
+            transaction.setAmount(AuxiliaryMethods::stringToDouble(xml.GetData()));
+            transactions.push_back(transaction);
+        }
+        xml.OutOfElem();
+    }
+    return transactions;
 }

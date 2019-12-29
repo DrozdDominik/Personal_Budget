@@ -19,6 +19,7 @@ public:
     static int tmToInt(tm* &tmDate);
     static string intToString(int number);
     static string doubleToString(double number);
+    static double stringToDouble(string number);
 };
 
 

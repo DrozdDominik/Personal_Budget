@@ -12,6 +12,8 @@ class FileWithTransactions
 {
 public:
     void addTransactionToFile (Transaction transaction, string fileName);
+    vector <Transaction> loadTransactionsFromFile(string fileName, int idOfLoggedUser);
+
 };
 
 #endif

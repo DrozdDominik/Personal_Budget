@@ -253,5 +253,6 @@ string UserManager::getUserFullName()
 
 void UserManager::addExpense()
 {
-    addTransaction(expenses, EXPENSE_FILENAME, "WYDATEK");
+    addTransaction(expenses, EXPENSES_FILENAME, "WYDATEK");
 }
+

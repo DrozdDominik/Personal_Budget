@@ -55,3 +55,10 @@ string AuxiliaryMethods::doubleToString(double number)
     ss >> str;
     return  str;
 }
+
+double AuxiliaryMethods::stringToDouble(string number) {
+    double doubleNumber;
+    istringstream iss(number);
+    iss >> doubleNumber;
+    return doubleNumber;
+}

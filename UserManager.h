@@ -16,7 +16,7 @@ class UserManager
     vector <Transaction> incomes;
     vector <Transaction> expenses;
     const string INCOMES_FILENAME;
-    const string EXPENSE_FILENAME;
+    const string EXPENSES_FILENAME;
     FileWithTransactions fileWithTransactions;
     User copyOfLoggedUser;
 
@@ -32,10 +32,14 @@ class UserManager
     void addTransaction(vector<Transaction> &transactions, string fileName, string keyword);
 
 public:
-    UserManager(string newIncomesFileName, string newExpensesFileName, User newLoggedUser) : INCOMES_FILENAME(newIncomesFileName), EXPENSE_FILENAME(newExpensesFileName), copyOfLoggedUser(newLoggedUser) /*menuManager(usersFileName)*/{};
+    UserManager(string newIncomesFileName, string newExpensesFileName, User newLoggedUser) : INCOMES_FILENAME(newIncomesFileName), EXPENSES_FILENAME(newExpensesFileName), copyOfLoggedUser(newLoggedUser){
+    incomes = fileWithTransactions.loadTransactionsFromFile(INCOMES_FILENAME, copyOfLoggedUser.getId());
+    expenses = fileWithTransactions.loadTransactionsFromFile(EXPENSES_FILENAME, copyOfLoggedUser.getId());
+    };
     string getUserFullName();
     void addIncome();
     void addExpense();
+    void writeAllIncomes();
 };
 
 
