@@ -13,13 +13,13 @@ void FileWithUsers::addUserToFile(User user) {
     }
     xml.FindElem();
     xml.IntoElem();
-    xml.AddElem( "USER" );
+    xml.AddElem("USER");
     xml.IntoElem();
-    xml.AddElem( "ID", user.getId() );
-    xml.AddElem( "LOGIN", user.getLogin() );
-    xml.AddElem( "PASSWORD", user.getPassword() );
-    xml.AddElem( "NAME", user.getName() );
-    xml.AddElem( "SURNAME", user.getSurname() );
+    xml.AddElem("ID", user.getId());
+    xml.AddElem("LOGIN", user.getLogin());
+    xml.AddElem("PASSWORD", user.getPassword());
+    xml.AddElem("NAME", user.getName());
+    xml.AddElem("SURNAME", user.getSurname());
     xml.Save("Users.xml");
 }
 

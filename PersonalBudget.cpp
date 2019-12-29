@@ -30,7 +30,7 @@ void PersonalBudget::registrationMenu() {
 void PersonalBudget::userMenu() {
     system("cls");
     cout << "    >>> MENU UZYTKOWNIKA <<<     " << endl;
-    cout << "Wlasciciel: " << userManager->getUserFullName() << endl;
+    cout << "Wlasciciel: " << userManager -> getUserFullName() << endl;
     cout << "---------------------------------" << endl;
     cout << "1. Dodaj przychod" << endl;
     cout << "2. Dodaj wydatek" << endl;
@@ -82,6 +82,7 @@ void PersonalBudget::userLogin()
     if (menuManager.whetherUserIsLoggedIn())
     {
         userManager = new UserManager(INCOMES_FILENAME, EXPENSE_FILENAME, menuManager.getLoggedUser());
+
     }
 }
 
@@ -115,3 +116,5 @@ void PersonalBudget::addExpense()
 {
     userManager -> addExpense();
 }
+
+
