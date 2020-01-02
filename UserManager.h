@@ -49,6 +49,9 @@ class UserManager
     void sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate);
     void showBalanceFromCurrentMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
     int getFirstDayOfMonth(int date);
+    void showBalanceFromPreviousMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
+    int getFirstDayOFPreviousMonth(int date);
+    int getLastDayOFPreviousMonth(int date);
 
 public:
     UserManager(string newIncomesFileName, string newExpensesFileName, User newLoggedUser) : INCOMES_FILENAME(newIncomesFileName), EXPENSES_FILENAME(newExpensesFileName), copyOfLoggedUser(newLoggedUser){
@@ -61,6 +64,7 @@ public:
     void writeAllIncomes();
     void showSelectedPeriodBalance();
     void showCurrentMonthBalance();
+    void showPreviousMonthBalance();
 };
 
 

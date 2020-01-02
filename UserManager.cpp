@@ -333,12 +333,88 @@ int UserManager::getFirstDayOfMonth(int date)
     return finallyDate;
 }
 
-void UserManager::showSelectedPeriodBalance()
+void UserManager::showBalanceFromPreviousMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond)
 {
-   showBalanceFromSelectedPeriod(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
+    system("cls");
+
+    int startDate = getFirstDayOFPreviousMonth(getCurrentDate());
+
+    int endDate = getLastDayOFPreviousMonth(getCurrentDate());
+
+    cout << "BILANS PRZYCHODOW I WYDATKOW Z OKRESU: " << AuxiliaryMethods::intDateToStringDate(startDate) << " do " << AuxiliaryMethods::intDateToStringDate(endDate) << endl;
+    sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
+    cout << endl << "---------------------------------------------------------------" << endl;
+    sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    system("pause");
 }
 
- void UserManager::showCurrentMonthBalance()
- {
+int UserManager::getFirstDayOFPreviousMonth(int date)
+{
+    int finallyDate = 0;
+    int month = 0;
+    int year = 0;
+    int support = date % 100;
+    int supportSecond = date - support;
+    support = supportSecond / 100;
+    month = support % 100;
+    if(month == 1)
+    {
+        year = (support - month) / 100 - 1;
+    }
+    else
+    {
+        year = (support - month) / 100;
+    }
+
+    if(month == 1)
+    {
+        finallyDate = (year * 100 + 12) * 100 + 1;
+    }
+    else
+    {
+        finallyDate = (year * 100 + (month - 1)) * 100 + 1;
+    }
+}
+
+int UserManager::getLastDayOFPreviousMonth(int date)
+{
+    int finallyDate = 0;
+    int month = 0;
+    int year = 0;
+    int support = date % 100;
+    int supportSecond = date - support;
+    support = supportSecond / 100;
+    month = support % 100;
+    if(month == 1)
+    {
+        year = (support - month) / 100 - 1;
+    }
+    else
+    {
+        year = (support - month) / 100;
+    }
+
+    if(month == 1)
+    {
+        finallyDate = (year * 100 + 12) * 100 + 31;
+    }
+    else
+    {
+        finallyDate = (year * 100 + (month - 1)) * 100 + daysInMonth(year, (month - 1));
+    }
+}
+
+void UserManager::showSelectedPeriodBalance()
+{
+    showBalanceFromSelectedPeriod(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
+}
+
+void UserManager::showCurrentMonthBalance()
+{
     showBalanceFromCurrentMonth(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
- }
+}
+
+void UserManager::showPreviousMonthBalance()
+{
+    showBalanceFromPreviousMonth(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
+}
