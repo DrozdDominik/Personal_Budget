@@ -285,13 +285,15 @@ void UserManager::showBalanceFromSelectedPeriod(vector <Transaction> transaction
     system("cls");
 
     cout << "BILANS PRZYCHODOW I WYDATKOW Z OKRESU: " << AuxiliaryMethods::intDateToStringDate(startDate) << " do " << AuxiliaryMethods::intDateToStringDate(endDate) << endl;
-    sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
+    double incomesSum = sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
     cout << endl << "---------------------------------------------------------------" << endl;
-    sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    double expensesSum = sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    cout << endl << "---------------------------------------------------------------" << endl;
+    cout << endl << "ROZNICA POMIEDZY PRZYCHODAMI I WYDATKAMI: " << incomesSum - expensesSum << endl;
     system("pause");
 }
 
-void UserManager::sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate)
+double UserManager::sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate)
 {
     sort(transactions.begin(), transactions.end(), dateComparison);
 
@@ -308,6 +310,8 @@ void UserManager::sortAndDisplayTransactions (vector <Transaction> transactions,
        }
     }
     cout << endl << "SUMA " << keyword << " : " << sum << endl;
+
+    return sum;
 }
 
 void UserManager::showBalanceFromCurrentMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond)
@@ -319,9 +323,11 @@ void UserManager::showBalanceFromCurrentMonth(vector <Transaction> transactions,
     int startDate = getFirstDayOfMonth(endDate);
 
     cout << "BILANS PRZYCHODOW I WYDATKOW Z OKRESU: " << AuxiliaryMethods::intDateToStringDate(startDate) << " do " << AuxiliaryMethods::intDateToStringDate(endDate) << endl;
-    sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
+    double incomesSum = sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
     cout << endl << "---------------------------------------------------------------" << endl;
-    sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    double expensesSum = sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    cout << endl << "---------------------------------------------------------------" << endl;
+    cout << endl << "ROZNICA POMIEDZY PRZYCHODAMI I WYDATKAMI: " << incomesSum - expensesSum << endl;
     system("pause");
 }
 
@@ -342,9 +348,11 @@ void UserManager::showBalanceFromPreviousMonth(vector <Transaction> transactions
     int endDate = getLastDayOFPreviousMonth(getCurrentDate());
 
     cout << "BILANS PRZYCHODOW I WYDATKOW Z OKRESU: " << AuxiliaryMethods::intDateToStringDate(startDate) << " do " << AuxiliaryMethods::intDateToStringDate(endDate) << endl;
-    sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
+    double incomesSum = sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
     cout << endl << "---------------------------------------------------------------" << endl;
-    sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    double expensesSum = sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    cout << endl << "---------------------------------------------------------------" << endl;
+    cout << endl << "ROZNICA POMIEDZY PRZYCHODAMI I WYDATKAMI: " << incomesSum - expensesSum << endl;
     system("pause");
 }
 
