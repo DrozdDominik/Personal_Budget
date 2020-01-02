@@ -20,6 +20,7 @@ public:
     static string intToString(int number);
     static string doubleToString(double number);
     static double stringToDouble(string number);
+    static string intDateToStringDate(int intDate);
 };
 
 

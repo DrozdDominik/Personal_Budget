@@ -14,7 +14,7 @@ int UserManager::getUserDate()
     int integerUserDate = NULL;
     string stringUserDate = "";
     do {
-        getline(cin, stringUserDate);
+        stringUserDate = AuxiliaryMethods::loadLine();
         if (whetherDateIsCorrect(stringUserDate)) {
             integerUserDate = convertStringDateToInt(stringUserDate);
             if (integerUserDate != 0)
@@ -256,3 +256,165 @@ void UserManager::addExpense()
     addTransaction(expenses, EXPENSES_FILENAME, "WYDATEK");
 }
 
+void UserManager::showBalanceFromSelectedPeriod(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond)
+{
+    system("cls");
+
+    int startDate = 0;
+    cout << "Podaj date rozpoczecia bilansu (yyyy-mm-dd): " << endl;
+    startDate = getUserDate();
+
+    int endDate = 0;
+    cout << "Podaj date konca bilansu (yyyy-mm-dd): " << endl;
+
+    endDate = getUserDate();
+
+    if (endDate < startDate)
+    {
+        cout << "Data koncowa nie moze byc wczesniejsza niz poczatkowa." << endl;
+
+
+        cout << "Podaj date rozpoczecia bilansu (yyyy-mm-dd): " << endl;
+        startDate = getUserDate();
+
+
+        cout << "Podaj date konca bilansu (yyyy-mm-dd): " << endl;
+        endDate = getUserDate();
+    }
+
+    system("cls");
+
+    cout << "BILANS PRZYCHODOW I WYDATKOW Z OKRESU: " << AuxiliaryMethods::intDateToStringDate(startDate) << " do " << AuxiliaryMethods::intDateToStringDate(endDate) << endl;
+    sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
+    cout << endl << "---------------------------------------------------------------" << endl;
+    sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    system("pause");
+}
+
+void UserManager::sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate)
+{
+    sort(transactions.begin(), transactions.end(), dateComparison);
+
+    double sum = 0;
+
+    cout << endl << "ZESTAWIENIE " << keyword << endl;
+
+    for(int i = 0; i < transactions.size(); i++)
+    {
+       if(transactions[i].getDate() >= startDate && transactions[i].getDate() <= endDate)
+       {
+           cout << AuxiliaryMethods::intDateToStringDate(transactions[i].getDate()) << " " << transactions[i].getItem() << ": " << transactions[i].getAmount() << endl;
+           sum += transactions[i].getAmount();
+       }
+    }
+    cout << endl << "SUMA " << keyword << " : " << sum << endl;
+}
+
+void UserManager::showBalanceFromCurrentMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond)
+{
+    system("cls");
+
+    int endDate = getCurrentDate();
+
+    int startDate = getFirstDayOfMonth(endDate);
+
+    cout << "BILANS PRZYCHODOW I WYDATKOW Z OKRESU: " << AuxiliaryMethods::intDateToStringDate(startDate) << " do " << AuxiliaryMethods::intDateToStringDate(endDate) << endl;
+    sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
+    cout << endl << "---------------------------------------------------------------" << endl;
+    sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    system("pause");
+}
+
+int UserManager::getFirstDayOfMonth(int date)
+{
+    int finallyDate = 0;
+    int support = date % 100;
+    finallyDate = date - support + 1;
+    return finallyDate;
+}
+
+void UserManager::showBalanceFromPreviousMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond)
+{
+    system("cls");
+
+    int startDate = getFirstDayOFPreviousMonth(getCurrentDate());
+
+    int endDate = getLastDayOFPreviousMonth(getCurrentDate());
+
+    cout << "BILANS PRZYCHODOW I WYDATKOW Z OKRESU: " << AuxiliaryMethods::intDateToStringDate(startDate) << " do " << AuxiliaryMethods::intDateToStringDate(endDate) << endl;
+    sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
+    cout << endl << "---------------------------------------------------------------" << endl;
+    sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    system("pause");
+}
+
+int UserManager::getFirstDayOFPreviousMonth(int date)
+{
+    int finallyDate = 0;
+    int month = 0;
+    int year = 0;
+    int support = date % 100;
+    int supportSecond = date - support;
+    support = supportSecond / 100;
+    month = support % 100;
+    if(month == 1)
+    {
+        year = (support - month) / 100 - 1;
+    }
+    else
+    {
+        year = (support - month) / 100;
+    }
+
+    if(month == 1)
+    {
+        finallyDate = (year * 100 + 12) * 100 + 1;
+    }
+    else
+    {
+        finallyDate = (year * 100 + (month - 1)) * 100 + 1;
+    }
+}
+
+int UserManager::getLastDayOFPreviousMonth(int date)
+{
+    int finallyDate = 0;
+    int month = 0;
+    int year = 0;
+    int support = date % 100;
+    int supportSecond = date - support;
+    support = supportSecond / 100;
+    month = support % 100;
+    if(month == 1)
+    {
+        year = (support - month) / 100 - 1;
+    }
+    else
+    {
+        year = (support - month) / 100;
+    }
+
+    if(month == 1)
+    {
+        finallyDate = (year * 100 + 12) * 100 + 31;
+    }
+    else
+    {
+        finallyDate = (year * 100 + (month - 1)) * 100 + daysInMonth(year, (month - 1));
+    }
+}
+
+void UserManager::showSelectedPeriodBalance()
+{
+    showBalanceFromSelectedPeriod(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
+}
+
+void UserManager::showCurrentMonthBalance()
+{
+    showBalanceFromCurrentMonth(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
+}
+
+void UserManager::showPreviousMonthBalance()
+{
+    showBalanceFromPreviousMonth(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
+}

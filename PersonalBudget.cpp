@@ -50,13 +50,13 @@ void PersonalBudget::userMenu() {
         addExpense();
         break;
     case '3':
-     //   showCurrentMonthBalance();
+        showCurrentMonthBalance();
         break;
     case '4':
-     //   showPreviousMonthBalance();
+        showPreviousMonthBalance();
         break;
     case '5':
-    //    showSelectedPeriodBalance();
+        showSelectedPeriodBalance();
         break;
     case '6':
         changingPasswordOfLoggedUser();
@@ -117,4 +117,17 @@ void PersonalBudget::addExpense()
     userManager -> addExpense();
 }
 
+void PersonalBudget::showSelectedPeriodBalance()
+{
+    userManager -> showSelectedPeriodBalance();
+}
 
+void PersonalBudget::showCurrentMonthBalance()
+{
+    userManager -> showCurrentMonthBalance();
+}
+
+void PersonalBudget::showPreviousMonthBalance()
+{
+    userManager -> showPreviousMonthBalance();
+}

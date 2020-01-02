@@ -62,3 +62,43 @@ double AuxiliaryMethods::stringToDouble(string number) {
     iss >> doubleNumber;
     return doubleNumber;
 }
+
+string AuxiliaryMethods::intDateToStringDate(int intDate)
+{
+    string stringDate, stringDay, stringMonth ,stringYear;
+
+    int day, month, year, temp;
+
+    day = intDate % 100;
+
+    if(day < 10)
+    {
+    stringDay = "0" + intToString(day);
+    }
+    else
+    {
+    stringDay = intToString(day);
+    }
+
+    temp = intDate / 100;
+
+    month = temp % 100;
+
+    if(month < 10)
+    {
+    stringMonth = "0" + intToString(month);
+    }
+    else
+    {
+    stringMonth = intToString(month);
+    }
+
+    year = temp / 100;
+
+    stringYear = intToString(year);
+
+    stringDate = stringYear + "-" + stringMonth + "-" + stringDay;
+
+    return stringDate;
+
+}
