@@ -46,7 +46,7 @@ class UserManager
     int getNewTransactionId(vector <Transaction> transactions);
     void addTransaction(vector <Transaction> &transactions, string fileName, string keyword);
     void showBalanceFromSelectedPeriod(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
-    void sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate);
+    double sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate);
     void showBalanceFromCurrentMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
     int getFirstDayOfMonth(int date);
     void showBalanceFromPreviousMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
