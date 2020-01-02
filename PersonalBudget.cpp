@@ -50,7 +50,7 @@ void PersonalBudget::userMenu() {
         addExpense();
         break;
     case '3':
-     //   showCurrentMonthBalance();
+        showCurrentMonthBalance();
         break;
     case '4':
      //   showPreviousMonthBalance();
@@ -120,4 +120,9 @@ void PersonalBudget::addExpense()
 void PersonalBudget::showSelectedPeriodBalance()
 {
     userManager -> showSelectedPeriodBalance();
+}
+
+void PersonalBudget::showCurrentMonthBalance()
+{
+    userManager -> showCurrentMonthBalance();
 }

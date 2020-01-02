@@ -256,7 +256,7 @@ void UserManager::addExpense()
     addTransaction(expenses, EXPENSES_FILENAME, "WYDATEK");
 }
 
-void UserManager::showBalance(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond)
+void UserManager::showBalanceFromSelectedPeriod(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond)
 {
     system("cls");
 
@@ -310,9 +310,35 @@ void UserManager::sortAndDisplayTransactions (vector <Transaction> transactions,
     cout << endl << "SUMA " << keyword << " : " << sum << endl;
 }
 
+void UserManager::showBalanceFromCurrentMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond)
+{
+    system("cls");
+
+    int endDate = getCurrentDate();
+
+    int startDate = getFirstDayOfMonth(endDate);
+
+    cout << "BILANS PRZYCHODOW I WYDATKOW Z OKRESU: " << AuxiliaryMethods::intDateToStringDate(startDate) << " do " << AuxiliaryMethods::intDateToStringDate(endDate) << endl;
+    sortAndDisplayTransactions(transactions, keyword, startDate, endDate);
+    cout << endl << "---------------------------------------------------------------" << endl;
+    sortAndDisplayTransactions(transactionsSecond, keywordSecond, startDate, endDate);
+    system("pause");
+}
+
+int UserManager::getFirstDayOfMonth(int date)
+{
+    int finallyDate = 0;
+    int support = date % 100;
+    finallyDate = date - support + 1;
+    return finallyDate;
+}
 
 void UserManager::showSelectedPeriodBalance()
 {
-   showBalance(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
+   showBalanceFromSelectedPeriod(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
 }
 
+ void UserManager::showCurrentMonthBalance()
+ {
+    showBalanceFromCurrentMonth(incomes, "PRZYCHODOW", expenses, "WYDATKOW");
+ }
