@@ -36,7 +36,7 @@ public:
     void userLogOut();
     void addIncome();
     void addExpense();
-    void writeAllIncomes();
+    void showSelectedPeriodBalance();
 };
 
 #endif

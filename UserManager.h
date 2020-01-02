@@ -20,6 +20,21 @@ class UserManager
     FileWithTransactions fileWithTransactions;
     User copyOfLoggedUser;
 
+    struct Comparison
+    {
+        bool operator()(Transaction first, Transaction second)
+        {
+            if(first.getDate() < second.getDate())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+         }
+    } dateComparison;
+
     int getCurrentDate();
     int getUserDate();
     bool whetherDateIsCorrect(string date);
@@ -28,8 +43,10 @@ class UserManager
     double getTransactionAmount();
     bool whetherTransactionAmountIsCorrectValue(string stringValue);
     double convertStringValueToDouble(string stringValue);
-    int getNewTransactionId(vector<Transaction> transactions);
-    void addTransaction(vector<Transaction> &transactions, string fileName, string keyword);
+    int getNewTransactionId(vector <Transaction> transactions);
+    void addTransaction(vector <Transaction> &transactions, string fileName, string keyword);
+    void showBalance(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
+    void sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate);
 
 public:
     UserManager(string newIncomesFileName, string newExpensesFileName, User newLoggedUser) : INCOMES_FILENAME(newIncomesFileName), EXPENSES_FILENAME(newExpensesFileName), copyOfLoggedUser(newLoggedUser){
@@ -40,6 +57,7 @@ public:
     void addIncome();
     void addExpense();
     void writeAllIncomes();
+    void showSelectedPeriodBalance();
 };
 
 
