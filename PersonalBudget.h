@@ -31,7 +31,6 @@ public:
     void userLogin();
     bool whetherUserIsLoggedIn();
     void userMenu();
-    void writeAllUsers();
     void changingPasswordOfLoggedUser();
     void userLogOut();
     void addIncome();

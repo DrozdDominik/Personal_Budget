@@ -32,21 +32,17 @@ vector <Transaction> FileWithTransactions::loadTransactionsFromFile(string fileN
     while (xml.FindElem("TRANSACTION")) {
         Transaction transaction;
         xml.IntoElem();
+        xml.FindElem("ID");
+        transaction.setId(atoi(MCD_2PCSZ(xml.GetData())));
         xml.FindElem("USERID");
-        int userId = atoi(MCD_2PCSZ(xml.GetData()));
-        if (userId == idOfLoggedUser) {
-            transaction.setUserId(userId);
-            xml.ResetMainPos();
-            xml.FindElem("ID");
-            transaction.setId(atoi(MCD_2PCSZ(xml.GetData())));
-            xml.FindElem("DATE");
-            transaction.setDate(atoi(MCD_2PCSZ(xml.GetData())));
-            xml.FindElem("ITEM");
-            transaction.setItem(xml.GetData());
-            xml.FindElem("AMOUNT");
-            transaction.setAmount(AuxiliaryMethods::stringToDouble(xml.GetData()));
-            transactions.push_back(transaction);
-        }
+        transaction.setUserId(atoi(MCD_2PCSZ(xml.GetData())));
+        xml.FindElem("DATE");
+        transaction.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+        xml.FindElem("ITEM");
+        transaction.setItem(xml.GetData());
+        xml.FindElem("AMOUNT");
+        transaction.setAmount(AuxiliaryMethods::stringToDouble(xml.GetData()));
+        transactions.push_back(transaction);
         xml.OutOfElem();
     }
     return transactions;

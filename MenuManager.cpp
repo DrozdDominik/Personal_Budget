@@ -55,18 +55,6 @@ bool MenuManager::isLoginExist(string login)
     return false;
 }
 
-void MenuManager::writeAllUsers()
-{
-    for(int i= 0; i < users.size(); i++)
-   {
-       cout << users[i].getId() << endl;
-       cout << users[i].getLogin() << endl;
-       cout << users[i].getPassword() << endl;
-       cout << users[i].getName() << endl;
-       cout << users[i].getSurname() << endl;
-}
-}
-
 void MenuManager::userLogin() {
     string login = "", password = "";
     system("cls");
