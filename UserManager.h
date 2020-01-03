@@ -8,6 +8,7 @@
 #include "FileWithTransactions.h"
 #include "AuxiliaryMethods.h"
 #include "User.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -35,11 +36,6 @@ class UserManager
          }
     } dateComparison;
 
-    int getCurrentDate();
-    int getUserDate();
-    bool whetherDateIsCorrect(string date);
-    int convertStringDateToInt(string date);
-    int daysInMonth(int year, int month);
     double getTransactionAmount();
     bool whetherTransactionAmountIsCorrectValue(string stringValue);
     double convertStringValueToDouble(string stringValue);
@@ -48,10 +44,7 @@ class UserManager
     void showBalanceFromSelectedPeriod(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
     double sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate);
     void showBalanceFromCurrentMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
-    int getFirstDayOfMonth(int date);
     void showBalanceFromPreviousMonth(vector <Transaction> transactions, string keyword, vector <Transaction> transactionsSecond, string keywordSecond);
-    int getFirstDayOFPreviousMonth(int date);
-    int getLastDayOFPreviousMonth(int date);
 
 public:
     UserManager(string newIncomesFileName, string newExpensesFileName, User newLoggedUser) : INCOMES_FILENAME(newIncomesFileName), EXPENSES_FILENAME(newExpensesFileName), copyOfLoggedUser(newLoggedUser){
@@ -61,7 +54,6 @@ public:
     string getUserFullName();
     void addIncome();
     void addExpense();
-    void writeAllIncomes();
     void showSelectedPeriodBalance();
     void showCurrentMonthBalance();
     void showPreviousMonthBalance();
