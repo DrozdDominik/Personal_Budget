@@ -100,5 +100,13 @@ string AuxiliaryMethods::intDateToStringDate(int intDate)
     stringDate = stringYear + "-" + stringMonth + "-" + stringDay;
 
     return stringDate;
+}
 
+int AuxiliaryMethods::stringDateTointDate(string stringDate)
+{
+    string dateWithoutDashes;
+    dateWithoutDashes = stringDate.erase(4,1);
+    dateWithoutDashes = dateWithoutDashes.erase(6,1);
+    int date = atoi(dateWithoutDashes.c_str());
+    return date;
 }

@@ -6,6 +6,7 @@
 #include <math.h>
 #include <ctime>
 #include <sstream>
+#include <cstdlib>
 
 
 using namespace std;
@@ -21,6 +22,7 @@ public:
     static string doubleToString(double number);
     static double stringToDouble(string number);
     static string intDateToStringDate(int intDate);
+    static int stringDateTointDate(string stringDate);
 };
 
 

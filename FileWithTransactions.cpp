@@ -15,7 +15,7 @@ void FileWithTransactions::addTransactionToFile (Transaction transaction, string
     {
         xml.AddElem("ID", transaction.getId());
         xml.AddElem("USERID", transaction.getUserId());
-        xml.AddElem("DATE", transaction.getDate());
+        xml.AddElem("DATE", AuxiliaryMethods::intDateToStringDate(transaction.getDate()));
         xml.AddElem("ITEM", transaction.getItem());
         xml.AddElem("AMOUNT", transaction.getStringAmount());
     }
@@ -37,7 +37,7 @@ vector <Transaction> FileWithTransactions::loadTransactionsFromFile(string fileN
         xml.FindElem("USERID");
         transaction.setUserId(atoi(MCD_2PCSZ(xml.GetData())));
         xml.FindElem("DATE");
-        transaction.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+        transaction.setDate(AuxiliaryMethods::stringDateTointDate(xml.GetData()));
         xml.FindElem("ITEM");
         transaction.setItem(xml.GetData());
         xml.FindElem("AMOUNT");
