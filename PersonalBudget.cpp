@@ -101,12 +101,6 @@ void PersonalBudget::userLogOut()
     menuManager.clearLoggedUser();
 }
 
-void PersonalBudget::writeAllUsers()
-{
-    menuManager.writeAllUsers();
-    system("pause");
-}
-
 void PersonalBudget::addIncome()
 {
     userManager -> addIncome();

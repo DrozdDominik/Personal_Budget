@@ -295,18 +295,28 @@ void UserManager::showBalanceFromSelectedPeriod(vector <Transaction> transaction
 
 double UserManager::sortAndDisplayTransactions (vector <Transaction> transactions, string keyword, int startDate, int endDate)
 {
-    sort(transactions.begin(), transactions.end(), dateComparison);
+    vector <Transaction> transactionsOfLoggedUser;
+
+    for(int i = 0; i < transactions.size(); i++)
+    {
+        if(transactions[i].getUserId() == copyOfLoggedUser.getId())
+        {
+            transactionsOfLoggedUser.push_back(transactions[i]);
+        }
+    }
+
+    sort(transactionsOfLoggedUser.begin(), transactionsOfLoggedUser.end(), dateComparison);
 
     double sum = 0;
 
     cout << endl << "ZESTAWIENIE " << keyword << endl;
 
-    for(int i = 0; i < transactions.size(); i++)
+    for(int i = 0; i < transactionsOfLoggedUser.size(); i++)
     {
-       if(transactions[i].getDate() >= startDate && transactions[i].getDate() <= endDate)
+       if(transactionsOfLoggedUser[i].getDate() >= startDate && transactionsOfLoggedUser[i].getDate() <= endDate)
        {
-           cout << AuxiliaryMethods::intDateToStringDate(transactions[i].getDate()) << " " << transactions[i].getItem() << ": " << transactions[i].getAmount() << endl;
-           sum += transactions[i].getAmount();
+           cout << AuxiliaryMethods::intDateToStringDate(transactionsOfLoggedUser[i].getDate()) << " " << transactionsOfLoggedUser[i].getItem() << ": " << transactionsOfLoggedUser[i].getAmount() << endl;
+           sum += transactionsOfLoggedUser[i].getAmount();
        }
     }
     cout << endl << "SUMA " << keyword << " : " << sum << endl;

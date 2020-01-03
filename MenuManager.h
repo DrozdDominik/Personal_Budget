@@ -31,7 +31,7 @@ public:
     void changingPasswordOfLoggedUser();
     User getLoggedUser();
     void clearLoggedUser();
-    void writeAllUsers();
+
 };
 
 #endif
